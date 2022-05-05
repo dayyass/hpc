@@ -14,17 +14,13 @@ int main() {
 
     #pragma omp parallel
     {
-        double x, y, sum_p = 0;
-        int n_threads = omp_get_num_threads();
-        int thread_id = omp_get_thread_num();
-
-        for(int i = thread_id; i < N_STEPS; i+=n_threads) {
+        double x, y;
+        #pragma omp for reduction (+:sum)
+        for(int i = 0; i < N_STEPS; i++) {
             x = (i + 0.5) * step;
             y = 4.0 / (1.0 + x*x);
-            sum_p += y;
+            sum += y;
         }
-        #pragma omp critical  // atomic
-        sum += sum_p;
     }
     
     double end_time = omp_get_wtime();
