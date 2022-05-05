@@ -6,7 +6,7 @@ using namespace std;
 #define N_STEPS 100000000
 
 int main() {
-    double sum = 0;
+    double sum, pi = 0;
     double step = 1.0 / (double)N_STEPS;
     double sums_partial[NUM_THREADS] = {0};
 
@@ -24,15 +24,16 @@ int main() {
             y = 4.0 / (1.0 + x*x);
             sum_p += y;
         }
-        #pragma omp critical
-        {
-            sum += sum_p;
-        }
+        sums_partial[thread_id] = sum_p;
     }
     
     double end_time = omp_get_wtime();
     printf("Time: %f\n", end_time - start_time);
 
-    double pi = sum * step;
+    for(int i = 0; i < NUM_THREADS; i++) {
+        sum += sums_partial[i];
+    }
+
+    pi = sum * step;
     printf("Integral: %f\n", pi);
 }
