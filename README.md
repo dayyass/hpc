@@ -2,5 +2,5 @@
 
 Compilation command:
 ```
-g++-11 -fopenmp main.cpp
+g++-11 -fopenmp {program.cpp}
 ```
