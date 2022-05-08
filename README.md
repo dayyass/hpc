@@ -1,6 +1,4 @@
-# Introduction to OpenMP - Tim Mattson (Intel)
+# OpenMP / MPI
 
-Compilation command:
-```
-g++-11 -fopenmp {program.cpp}
-```
+- [OpenMP](./openmp/)
+- [MPI](./mpi/)
