@@ -22,6 +22,8 @@ int main() {
         }
     }
 
+    double start_time = MPI_Wtime();
+
     double x, y, my_sum = 0;
     double step = 1.0 / (double)N_STEPS;
 
@@ -34,9 +36,13 @@ int main() {
     if (rank == 1) {
         MPI_Send(&my_sum, 1, MPI_DOUBLE, 0, 1, MPI_COMM_WORLD);
     } else {
+        
         double other_sum = 0;
         MPI_Status status;
         MPI_Recv(&other_sum, 1, MPI_DOUBLE, 1, 1, MPI_COMM_WORLD, &status);
+
+        double end_time = MPI_Wtime();
+        printf("Time: %f\n", end_time - start_time);
 
         double pi = (my_sum + other_sum) * step;
         printf("Integral: %.17g\n", pi);
