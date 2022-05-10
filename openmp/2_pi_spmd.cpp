@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <cmath>
 #include <omp.h>
 using namespace std;
 
@@ -6,7 +7,7 @@ using namespace std;
 #define N_STEPS 100000000
 
 int main() {
-    double sum, pi = 0;
+    double sum = 0, pi = 0;
     double step = 1.0 / (double)N_STEPS;
     double sums_partial[NUM_THREADS] = {0};
 
@@ -19,7 +20,7 @@ int main() {
         int n_threads = omp_get_num_threads();
         int thread_id = omp_get_thread_num();
 
-        for(int i = thread_id; i < N_STEPS; i+=n_threads) {
+        for(int i = thread_id; i < N_STEPS; i += n_threads) {
             x = (i + 0.5) * step;
             y = 4.0 / (1.0 + x*x);
             sum_p += y;
@@ -35,5 +36,6 @@ int main() {
     }
 
     pi = sum * step;
-    printf("Integral: %f\n", pi);
+    printf("Integral: %.17g\n", pi);
+    printf("Error: %.17g\n", abs(pi - M_PI));
 }
