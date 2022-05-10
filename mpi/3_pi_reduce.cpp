@@ -16,24 +16,24 @@ int main() {
 
     double start_time = MPI_Wtime();
 
-    double x, y, my_sum = 0;
+    double x, y, local_sum = 0;
     double step = 1.0 / (double)N_STEPS;
 
     for(int i = rank; i < N_STEPS; i += size) {
         x = (i + 0.5) * step;
         y = 4.0 / (1.0 + x*x);
-        my_sum += y;
+        local_sum += y;
     }
 
-    double sum = 0;
-    MPI_Reduce(&my_sum, &sum, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
+    double global_sum = 0;
+    MPI_Reduce(&local_sum, &global_sum, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
 
     if (rank == 0) {
 
         double end_time = MPI_Wtime();
         printf("Time: %f\n", end_time - start_time);
-        
-        double pi = sum * step;
+
+        double pi = global_sum * step;
         printf("Integral: %.17g\n", pi);
         printf("Error: %.17g\n", abs(pi - M_PI));
     }

@@ -2,7 +2,7 @@
 
 Compilation command:
 ```
-mpicc {program.cpp}
+mpic++ {program.cpp}
 ```
 
 Execution command:
