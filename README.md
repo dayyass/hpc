@@ -1,4 +1,4 @@
-# OpenMP / MPI
+# MPI / OpenMP
 
 - [OpenMP](./openmp/)
 - [MPI](./mpi/)
