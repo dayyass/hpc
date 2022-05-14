@@ -1,7 +1,8 @@
-# MPI / OpenMP
+# OpenMP / MPI / CUDA
 
 - [OpenMP](./openmp/)
 - [MPI](./mpi/)
+- [CUDA](./cuda/)
 
 ### MPI + OpenMP
 Compilation command:
