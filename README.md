@@ -1,4 +1,4 @@
-# OpenMP / MPI / CUDA
+# High Performance Computing
 
 - [OpenMP](./openmp/)
 - [MPI](./mpi/)
