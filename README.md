@@ -15,7 +15,7 @@ Execution command:
 OMP_NUM_THREADS={M} mpiexec -n {N} ./a.out
 ```
 
-### MPI + CUDA
+### MPI + CUDA ([link](https://docs.ccv.brown.edu/oscar/gpu-computing/mpi-cuda))
 Compilation command:
 ```
 mpic++ -c mpi_cuda_main.cpp
