@@ -2,7 +2,7 @@
 using namespace std;
 
 // cuda kernel function signature
-extern void launch_kernel(int rank, int size);
+void launch_kernel(int rank, int size);
 
 int main() {
 
