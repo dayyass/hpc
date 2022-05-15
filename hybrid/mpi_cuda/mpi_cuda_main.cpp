@@ -8,12 +8,10 @@ int main() {
 
     MPI_Init(NULL, NULL);
 
-    int world_size, world_rank, name_len;
-    char processor_name[MPI_MAX_PROCESSOR_NAME];
+    int world_size, world_rank;
 
     MPI_Comm_size(MPI_COMM_WORLD, &world_size);
     MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
-    MPI_Get_processor_name(processor_name, &name_len);
 
     // cuda kernel
     launch_kernel(world_rank, world_size);
